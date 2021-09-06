@@ -1,6 +1,6 @@
 """
 Exercise: is in
-Points: 5/5
+5/5 Points
 
 We can use bisection search to determine if a character is in a string, so
 long as the string is sorted in alpabetical order.
