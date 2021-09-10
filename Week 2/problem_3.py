@@ -22,20 +22,20 @@ def payoffCalcBisection(bal, air):
     '''
     mthIntRate = air / 12.0    # monthly interest rate
     tempBal = bal    # balance var used for testing
-    epsilon = 0.01
+    epsilon = 0.03
     lower = bal / 12
     upper = (bal * (1 + mthIntRate)**12) / 12.0
 
-    while tempBal > epsilon or tempBal < -epsilon:
+    while abs(tempBal) > epsilon:
         mthPmt = (lower + upper) / 2    # monthly payment
+        tempBal = bal
         for i in range(12):
-            tempBal -= mthPmt    # min payment applied
-            tempBal = tempBal + (mthIntRate * tempBal)    # balance with interest accrued
-        if tempBal <= 0:
-            upper = mthPmt
-            tempBal = bal
-        else:
+            tempBal = tempBal - mthPmt + ((tempBal - mthPmt) * mthIntRate)    # min payment applied, then calc balance with interest accrued
+        if tempBal > epsilon:
             lower = mthPmt
-            tempBal = bal
+        elif tempBal < -epsilon:
+            upper = mthPmt
+        else:
+            break
 
-    print("Lowest Payment: " + str(mthPmt))
+    print("Lowest Payment: " + str(round(mthPmt, 2)))
