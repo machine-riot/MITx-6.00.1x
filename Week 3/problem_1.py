@@ -24,13 +24,17 @@ def isWordGuessed(secretWord, lettersGuessed):
     returns: boolean, True if all the letters of secretWord are in
         lettersGuessed; False otherwise
     '''
-    guessed = False
+#    guessed = False
 
-    for char in secretWord:
-        if char in lettersGuessed:
-            guessed = True
-        if char not in lettersGuessed:
-            guessed = False
-            break
+#    for char in secretWord:
+#        if char in lettersGuessed:
+#            guessed = True
+#        if char not in lettersGuessed:
+#            guessed = False
+#            break
 
-    return guessed
+#    return guessed
+    return all(True if char in lettersGuessed else False for char in secretWord)
+
+# Commented out my initial solution which worked, but then included my solution
+# for the additional challenge of solving this with one line of code.
