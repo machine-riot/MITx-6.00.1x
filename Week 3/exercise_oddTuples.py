@@ -17,8 +17,12 @@ def oddTuples(aTup):
     newTup = ()
     i = 0
 
-    while i <= len(aTup):
-        newTup += (aTup[i],)
-        i += 2
+    while i < len(aTup):
+        if i == 0 or i % 2 == 0:
+            newTup += (aTup[i],)
+            i += 1
+        else:
+            i += 1
+            continue
 
     return newTup
